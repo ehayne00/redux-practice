@@ -1,7 +1,8 @@
 import React from "react";
 import MemberCard from "../components/MemberCard";
+import {connect} from 'react-redux'
 
-const FamilyList = ({ familyMembers, upVote, downVote }) => {
+const FamilyList = ({familyMembers}) => {
   const sortedFamily = familyMembers.slice().sort((a, b) => b.votes - a.votes);
   return (
     <div className="flex">
@@ -9,11 +10,13 @@ const FamilyList = ({ familyMembers, upVote, downVote }) => {
       <MemberCard
         key={member.id}
         member={member}
-        downVote={downVote}
-        upVote={upVote}
       />)}
     </div>
   )
 };
 
-export default FamilyList;
+const mapStateToProps = state => ({
+  familyMembers: state.familyMembers
+})
+
+export default connect(mapStateToProps)(FamilyList);

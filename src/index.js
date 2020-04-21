@@ -4,17 +4,19 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { createStore } from 'redux'
+import rootReducer from './reducers/index.js'
 
-createStore(() => {})
+const store = createStore(rootReducer)
+
+//now that we have created store we can call things on the store like...
+// console.log(store.getState())    ... getState will retrieve the state for you
+// store.dispatch({ type: 'DOWNVOTE_MEMBER', payload: 2})
 
 ReactDOM.render(
-  <Provider store={{}}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// <React.StrictMode>
+

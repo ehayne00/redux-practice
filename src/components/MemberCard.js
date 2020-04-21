@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux'
 
 const style = {
     border: '1px solid black',
@@ -27,4 +28,10 @@ const MemberCard = ({ member, upVote, downVote }) => {
   );
 };
 
-export default MemberCard;
+const mapDispatchToProps = dispatch => ({
+  upVote: id => dispatch({ type: 'UPVOTE_MEMBER', payload: id}),
+  downVote: id => dispatch({ type: 'DOWNVOTE_MEMBER', payload: id})
+})
+
+export default connect(null, mapDispatchToProps)(MemberCard);
+//must put null as first arg- mapStateToProps
